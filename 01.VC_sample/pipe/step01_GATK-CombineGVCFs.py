@@ -1,6 +1,6 @@
 command  = ["gatk --java-options '-Djava.io.tmpdir=./tmp' CombineGVCFs"]
 command += ['--reference ../reference/ref.fa']
-command += ['--output result/pooled.HaplotypeCaller.g.vcf.gz']
+command += ['--output result/pooled.HaplotypeCaller.g.vcf']
 
 fin = open('../gVCF_LIST')
 for line in fin:
@@ -8,8 +8,8 @@ for line in fin:
     command += ['--variant ../result/' + gVCF]
 fin.close()
 
-command += ['1> result/pooled.HaplotypeCaller.g.vcf.gz.log']
-command += ['2> result/pooled.HaplotypeCaller.g.vcf.gz.err']
+command += ['1> result/pooled.HaplotypeCaller.g.vcf.log']
+command += ['2> result/pooled.HaplotypeCaller.g.vcf.err']
 
 fout = open('step01_GATK-CombineGVCFs.sh', 'w')
 fout.write(' \\\n'.join(command) + '\n')

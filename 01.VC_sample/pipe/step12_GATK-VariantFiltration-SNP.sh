@@ -1,6 +1,6 @@
 gatk --java-options '-Djava.io.tmpdir=./tmp' VariantFiltration \
 --reference ../reference/ref.fa \
---variant result/pooled.HaplotypeCaller.all.snp.vcf.gz \
+--variant result/pooled.HaplotypeCaller.all.snp.vcf \
 --filter-expression "QD < 2.0" \
 --filter-name "SNP_QD" \
 --filter-expression "FS > 60.0" \
@@ -13,9 +13,9 @@ gatk --java-options '-Djava.io.tmpdir=./tmp' VariantFiltration \
 --filter-name "SNP_MQRankSum" \
 --filter-expression "ReadPosRankSum  < -8.0" \
 --filter-name "SNP_ReadPosRankSum" \
---output result/pooled.HaplotypeCaller.all.snp.filtered.vcf.gz \
-1>       result/pooled.HaplotypeCaller.all.snp.filtered.vcf.gz.log \
-2>       result/pooled.HaplotypeCaller.all.snp.filtered.vcf.gz.err
+--output result/pooled.HaplotypeCaller.all.snp.filtered.vcf \
+1>       result/pooled.HaplotypeCaller.all.snp.filtered.vcf.log \
+2>       result/pooled.HaplotypeCaller.all.snp.filtered.vcf.err
 
 #--filter-expression "DP  < 645" \
 #--filter-name "SNP_lowDP" \
