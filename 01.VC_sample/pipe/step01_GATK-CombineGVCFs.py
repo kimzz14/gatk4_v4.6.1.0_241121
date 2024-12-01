@@ -9,6 +9,6 @@ for fileName in glob.glob('gVCF/*vcf'):
 command += ['1> result/pooled.HaplotypeCaller.g.vcf.log']
 command += ['2> result/pooled.HaplotypeCaller.g.vcf.err']
 
-fout = open('../pipe/step01_GATK-CombineGVCFs.sh', 'w')
+fout = open('pipe/step01_GATK-CombineGVCFs.sh', 'w')
 fout.write(' \\\n'.join(command) + '\n')
 fout.close()
