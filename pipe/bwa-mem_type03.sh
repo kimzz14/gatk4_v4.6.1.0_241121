@@ -7,13 +7,13 @@ readDir=/test
 
 bwa mem \
     -t ${threadN} \
+    -x pacbio \
        reference/ref.fa \
-       ${readDir}/${readID}_1.fastq.gz \
-       ${readDir}/${readID}_2.fastq.gz \
-    1> result/${readID}.bwa-memT01.sam \
-    2> result/${readID}.bwa-memT01.log 
+       ${readDir}/${readID}.fastq.gz \
+    1> result/${readID}.bwa-memT03.sam \
+    2> result/${readID}.bwa-memT03.log 
 
 samtools flagstat \
-       result/${readID}.bwa-memT01.sam \
-    1> result/${readID}.bwa-memT01.flagstat \
-    2> result/${readID}.bwa-memT01.flagstat.log
+       result/${readID}.bwa-memT03.sam \
+    1> result/${readID}.bwa-memT03.flagstat \
+    2> result/${readID}.bwa-memT03.flagstat.log
