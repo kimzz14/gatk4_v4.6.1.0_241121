@@ -10,5 +10,5 @@ samtools merge \
     result/in2.sam \
     result/in3.sam \
     result/in4.sam \
-1>  result/${ofile}.flagstat \
-2>  result/${ofile}.flagstat.log
+1>  result/${ofile}.log \
+2>  result/${ofile}.err
