@@ -3,6 +3,11 @@ readID=$1
 threadN=$2
 ############################################################################################
 
+if [ -z ${readID} ]; then
+    echo "readID is empty."
+    exit 1
+fi
+
 gatk --java-options "-Djava.io.tmpdir=./tmp" MarkDuplicates \
 --INPUT                 result/${readID}.bam \
 --OUTPUT                result/${readID}.dedupped.bam \

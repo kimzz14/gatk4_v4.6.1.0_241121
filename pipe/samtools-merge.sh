@@ -3,6 +3,12 @@ threadN=128
 ofile=test.N09
 ############################################################################################
 
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
+    exit 1
+fi
+
+
 samtools merge \
     -@ ${threadN} \
     -o result/${ofile}.bam \

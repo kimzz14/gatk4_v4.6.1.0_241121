@@ -3,6 +3,11 @@ readID=$1
 
 ############################################################################################
 
+if [ -z ${readID} ]; then
+    echo "readID is empty."
+    exit 1
+fi
+
 gatk --java-options "-Djava.io.tmpdir=./tmp" HaplotypeCaller \
 -ERC        GVCF \
 --reference reference/ref.fa \

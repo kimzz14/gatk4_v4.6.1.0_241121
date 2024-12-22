@@ -3,6 +3,17 @@ readID=$1
 threadN=$2
 ############################################################################################
 
+if [ -z ${readID} ]; then
+    echo "readID is empty."
+    exit 1
+fi
+
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
+    exit 1
+fi
+
+
 samtools flagstat \
     -@ ${threadN} \
        result/${readID}.sam \

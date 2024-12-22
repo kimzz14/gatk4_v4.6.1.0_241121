@@ -4,6 +4,17 @@ fileExt=$2
 
 ############################################################################################
 
+if [ -z ${readID} ]; then
+    echo "readID is empty."
+    exit 1
+fi
+
+if [ -z ${fileExt} ]; then
+    echo "fileExt is empty."
+    exit 1
+fi
+
+
 gatk --java-options "-Djava.io.tmpdir=./tmp" AddOrReplaceReadGroups \
 --INPUT                 result/${readID}.${fileExt} \
 --OUTPUT                result/${readID}.RGsorted.bam \
