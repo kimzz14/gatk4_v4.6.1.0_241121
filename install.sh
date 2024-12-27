@@ -1,6 +1,6 @@
 conda create -n gatk4_v4.6.1.0-241121
 
-source activate gatk4_v4.6.1.0-241121
+conda activate gatk4_v4.6.1.0-241121
 
 conda install gatk4=4.6.1.0=py310hdfd78af_0 samtools bcftools bwa
 #bioconda/noarch::gatk4-4.6.1.0-py310hdfd78af_0
