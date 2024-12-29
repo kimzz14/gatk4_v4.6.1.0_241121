@@ -13,7 +13,7 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-sh pipe/bwa-mem_type01.sh              ${readID} ${threadN}
+sh pipe/bwa-memT01.sh              ${readID} ${threadN}
 sh pipe/gatk-AddOrReplaceReadGroups.sh ${readID}.bwa-memT01 sam
 sh pipe/gatk-MarkDuplicates.sh         ${readID}.bwa-memT01.RGsorted
 sh pipe/gatk-HaplotypeCaller.sh        ${readID}.bwa-memT01.RGsorted

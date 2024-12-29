@@ -17,14 +17,14 @@ fi
 
 bwa mem \
     -t ${threadN} \
-    -x pacbio \
-    reference/ref.fa \
-    ${readDir}/${readID}.fastq.gz \
-    2>  result/${readID}.bwa-memT03.bam.log \
+    db/bwaDB/ref.fa \
+    ${readDir}/${readID}_1.fastq.gz \
+    ${readDir}/${readID}_2.fastq.gz \
+    2>  result/${readID}.bwa-memT01.bam.log \
     | samtools view -bS \
-    -o  result/${readID}.bwa-memT03.bam
+    -o  result/${readID}.bwa-memT01.bam
 
 samtools flagstat \
-        result/${readID}.bwa-memT03.bam \
-    1>  result/${readID}.bwa-memT03.bam.flagstat \
-    2>  result/${readID}.bwa-memT03.bam.flagstat.log
+        result/${readID}.bwa-memT01.bam \
+    1>  result/${readID}.bwa-memT01.bam.flagstat \
+    2>  result/${readID}.bwa-memT01.bam.flagstat.log

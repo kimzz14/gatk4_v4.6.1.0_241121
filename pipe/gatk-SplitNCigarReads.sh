@@ -10,7 +10,7 @@ fi
 
 gatk --java-options "-Djava.io.tmpdir=./tmp" SplitNCigarReads \
 --create-output-bam-index false \
---reference reference/ref.fa \
+--reference db/ref.fa \
 --input     result/${readID}.bam \
 --output    result/${readID}.SplitN.bam \
 1>          result/${readID}.SplitN.bam.log \

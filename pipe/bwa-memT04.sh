@@ -1,8 +1,8 @@
 ############################################################################################
 readID=$1
 threadN=$2
-
-readDir=/test
+tLen=$3 #mean, std, max, min #445,97,800,100
+readDir=/archive/kimzz14/SRA_RAW/NAAS/Triticum_aestivum/Keumkang/NGS/01.fastqSampler/result
 ############################################################################################
 
 if [ -z ${readID} ]; then
@@ -15,16 +15,18 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
+if [ -z ${tLen} ]; then
+    echo "tLen is empty."
+    exit 1
+fi
+
 bwa mem \
     -t ${threadN} \
-    reference/ref.fa \
+    -I ${tLen} \
+    db/bwaDB/ref.fa \
     ${readDir}/${readID}_1.fastq.gz \
     ${readDir}/${readID}_2.fastq.gz \
-    2>  result/${readID}.bwa-memT01.bam.log \
+    2>  result/${readID}.bwa-memT04.bam.log \
     | samtools view -bS \
-    -o  result/${readID}.bwa-memT01.bam
+    -o  result/${readID}.bwa-memT04.bam
 
-samtools flagstat \
-        result/${readID}.bwa-memT01.bam \
-    1>  result/${readID}.bwa-memT01.bam.flagstat \
-    2>  result/${readID}.bwa-memT01.bam.flagstat.log

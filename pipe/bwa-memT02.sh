@@ -18,7 +18,7 @@ fi
 #pair-end
 bwa mem \
     -t ${threadN} \
-    reference/ref.fa \
+    db/bwaDB/ref.fa \
     ${readDir}/${readID}-P_1.fastq.gz \
     ${readDir}/${readID}-P_2.fastq.gz \
     2>  result/${readID}.bwa-memT02-pe.bam.log \
