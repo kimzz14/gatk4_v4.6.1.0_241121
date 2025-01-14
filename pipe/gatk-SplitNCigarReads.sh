@@ -1,7 +1,12 @@
 ############################################################################################
-readID=$1
-
+threadN=$1
+readID=$2
 ############################################################################################
+
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
+    exit 1
+fi
 
 if [ -z ${readID} ]; then
     echo "readID is empty."
@@ -19,8 +24,5 @@ gatk --java-options "-Djava.io.tmpdir=./tmp" SplitNCigarReads \
 #rm         result/${readID}.bam
 #add 2024.08.29 --create-output-bam-index false
 
-samtools index \
-            -c \
-            result/${readID}.SplitN.bam \
-1>          result/${readID}.SplitN.bam.bai.log \
-2>          result/${readID}.SplitN.bam.bai.err
+bash pipe/samtools-index.sh    ${threadN} ${readID}.SplitN
+bash pipe/samtools-flagstat.sh ${threadN} ${readID}.SplitN bam

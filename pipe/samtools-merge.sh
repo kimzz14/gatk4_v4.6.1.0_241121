@@ -8,7 +8,6 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-
 samtools merge \
     -@ ${threadN} \
     -o result/${ofile}.bam \

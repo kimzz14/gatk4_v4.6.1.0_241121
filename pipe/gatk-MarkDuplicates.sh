@@ -1,7 +1,12 @@
 ############################################################################################
-readID=$1
-threadN=$2
+threadN=$1
+readID=$2
 ############################################################################################
+
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
+    exit 1
+fi
 
 if [ -z ${readID} ]; then
     echo "readID is empty."
@@ -20,15 +25,5 @@ gatk --java-options "-Djava.io.tmpdir=./tmp" MarkDuplicates \
 1>                      result/${readID}.dedupped.bam.log \
 2>                      result/${readID}.dedupped.bam.err
 
-samtools index \
-                        -c \
-                        result/${readID}.dedupped.bam \
-1>                      result/${readID}.dedupped.bam.csi.log \
-2>                      result/${readID}.dedupped.bam.csi.err
-
-samtools flagstat \
-                        result/${readID}.dedupped.bam \
-1>                      result/${readID}.dedupped.bam.flagstat \
-2>                      result/${readID}.dedupped.bam.flagstat.log 
-
-#rm                      result/${readID}.bam
+bash pipe/samtools-index.sh    ${threadN} ${readID}.dedupped
+bash pipe/samtools-flagstat.sh ${threadN} ${readID}.dedupped bam

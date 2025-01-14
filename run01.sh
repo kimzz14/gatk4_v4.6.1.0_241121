@@ -1,1 +1,1 @@
-sh pipe/run_gatk.sh sample 128
+bash pipe/run_gatk.sh 128 sample

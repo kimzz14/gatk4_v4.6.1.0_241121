@@ -1,8 +1,13 @@
 ############################################################################################
-readID=$1
-fileExt=$2
-
+threadN=$1
+readID=$2
+fileExt=$3
 ############################################################################################
+
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
+    exit 1
+fi
 
 if [ -z ${readID} ]; then
     echo "readID is empty."
@@ -13,7 +18,6 @@ if [ -z ${fileExt} ]; then
     echo "fileExt is empty."
     exit 1
 fi
-
 
 gatk --java-options "-Djava.io.tmpdir=./tmp" AddOrReplaceReadGroups \
 --INPUT                 result/${readID}.${fileExt} \
@@ -29,15 +33,5 @@ gatk --java-options "-Djava.io.tmpdir=./tmp" AddOrReplaceReadGroups \
 1>                      result/${readID}.RGsorted.bam.log \
 2>                      result/${readID}.RGsorted.bam.err
 
-samtools index \
-                        -c \
-                        result/${readID}.RGsorted.bam \
-1>                      result/${readID}.RGsorted.bam.csi.log \
-2>                      result/${readID}.RGsorted.bam.csi.err
-
-samtools flagstat \
-                        result/${readID}.RGsorted.bam \
-1>                      result/${readID}.RGsorted.bam.flagstat \
-2>                      result/${readID}.RGsorted.bam.flagstat.log 
-
-#rm                      result/${readID}.${fileExt}
+bash pipe/samtools-index.sh    ${threadN} ${readID}.RGsorted
+bash pipe/samtools-flagstat.sh ${threadN} ${readID}.RGsorted bam

@@ -25,5 +25,5 @@ samtools sort \
     result/${readID}.${fileExt} \
     1 > result/${readID}.sorted.bam.log \
     2 > result/${readID}.sorted.bam.err
-samtools index \
-    -c  result/${readID}.sorted.bam
+
+bash pipe/samtools-index.sh ${threadN} ${readID}.sorted

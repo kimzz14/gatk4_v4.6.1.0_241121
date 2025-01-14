@@ -15,6 +15,7 @@ fi
 
 bash pipe/gatk-AddOrReplaceReadGroups.sh ${threadN} ${readID} bam
 bash pipe/gatk-MarkDuplicates.sh         ${threadN} ${readID}.RGsorted
+bash pipe/gatk-HaplotypeCaller.sh        ${threadN} ${readID}.RGsorted
 bash pipe/gatk-HaplotypeCaller.sh        ${threadN} ${readID}.RGsorted.dedupped
 
 echo ${readID} done!

@@ -1,6 +1,7 @@
 ############################################################################################
-readID=$1
-threadN=$2
+threadN=$1
+readID=$2
+fileExt=$3
 ############################################################################################
 
 if [ -z ${readID} ]; then
@@ -13,9 +14,8 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-
 samtools flagstat \
-    -@ ${threadN} \
-       result/${readID}.sam \
-    1> result/${readID}.flagstat \
-    2> result/${readID}.flagstat.log
+    --threads ${threadN} \
+       result/${readID}.${fileExt} \
+    1> result/${readID}.${fileExt}.flagstat \
+    2> result/${readID}.${fileExt}.flagstat.log
