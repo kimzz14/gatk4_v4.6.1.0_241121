@@ -1,6 +1,6 @@
 ############################################################################################
-readID=$1
-threadN=$2
+threadN=$1
+readID=$2
 
 readDir=/test
 ############################################################################################
@@ -17,14 +17,14 @@ fi
 
 bwa mem \
     -t ${threadN} \
+    -x pacbio \
     db/bwaDB/ref.fa \
-    ${readDir}/${readID}_1.fastq.gz \
-    ${readDir}/${readID}_2.fastq.gz \
-    2>  result/${readID}.bwa-memT01.bam.log \
+    ${readDir}/${readID}.fastq.gz \
+    2>  result/${readID}.bwa-memT101.bam.log \
     | samtools view -bS \
-    -o  result/${readID}.bwa-memT01.bam
+    -o  result/${readID}.bwa-memT101.bam
 
 samtools flagstat \
-        result/${readID}.bwa-memT01.bam \
-    1>  result/${readID}.bwa-memT01.bam.flagstat \
-    2>  result/${readID}.bwa-memT01.bam.flagstat.log
+        result/${readID}.bwa-memT101.bam \
+    1>  result/${readID}.bwa-memT101.bam.flagstat \
+    2>  result/${readID}.bwa-memT101.bam.flagstat.log

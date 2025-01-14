@@ -1,6 +1,6 @@
 ############################################################################################
-readID=$1
-threadN=$2
+threadN=$1
+readID=$2
 
 readDir=/archive/kimzz14/SRA_RAW/NAAS/Triticum_aestivum/Keumkang/ONT/data
 ############################################################################################
@@ -20,11 +20,11 @@ bwa mem \
     -x ont2d \
     db/bwaDB/ref.fa \
     ${readDir}/${readID}.fastq.gz \
-    2>  result/${readID}.bwa-memT05.bam.log \
+    2>  result/${readID}.bwa-memT111.bam.log \
     | samtools view -bS \
-    -o  result/${readID}.bwa-memT05.bam
+    -o  result/${readID}.bwa-memT111.bam
 
 samtools flagstat \
-        result/${readID}.bwa-memT05.bam \
-    1>  result/${readID}.bwa-memT05.bam.flagstat \
-    2>  result/${readID}.bwa-memT05.bam.flagstat.log
+        result/${readID}.bwa-memT111.bam \
+    1>  result/${readID}.bwa-memT111.bam.flagstat \
+    2>  result/${readID}.bwa-memT111.bam.flagstat.log

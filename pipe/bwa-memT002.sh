@@ -1,7 +1,6 @@
 ############################################################################################
-readID=$1
-threadN=$2
-
+threadN=$1
+readID=$2
 readDir=/test
 ############################################################################################
 
@@ -15,16 +14,18 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-bwa mem \
+bwa \
+    mem \
+    -5SP \
+    -T0 \
     -t ${threadN} \
-    -x pacbio \
-    db/bwaDB/ref.fa \
-    ${readDir}/${readID}.fastq.gz \
-    2>  result/${readID}.bwa-memT03.bam.log \
+    bwaDB/ref.fa \
+    ${readDir}/${readID}_1.fastq.gz \
+    ${readDir}/${readID}_2.fastq.gz \
+    2>  result/${readID}.bwa-memT002.log \
     | samtools view -bS \
-    -o  result/${readID}.bwa-memT03.bam
+    -o  result/${readID}.bwa-memT002.bam
 
-samtools flagstat \
-        result/${readID}.bwa-memT03.bam \
-    1>  result/${readID}.bwa-memT03.bam.flagstat \
-    2>  result/${readID}.bwa-memT03.bam.flagstat.log
+#T0xx = Short-read
+#T002 = 
+#T1xx = Long-read

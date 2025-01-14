@@ -13,11 +13,11 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-sh pipe/bwa-memT01.sh              ${readID} ${threadN}
-sh pipe/gatk-AddOrReplaceReadGroups.sh ${readID}.bwa-memT01 sam
-sh pipe/gatk-MarkDuplicates.sh         ${readID}.bwa-memT01.RGsorted
-sh pipe/gatk-HaplotypeCaller.sh        ${readID}.bwa-memT01.RGsorted
-sh pipe/gatk-HaplotypeCaller.sh        ${readID}.bwa-memT01.RGsorted.dedupped
+#sh pipe/bwa-memT001.sh                  ${threadN} ${readID} 
+sh pipe/gatk-AddOrReplaceReadGroups.sh ${readID} bam
+sh pipe/gatk-MarkDuplicates.sh         ${readID}.RGsorted
+sh pipe/gatk-HaplotypeCaller.sh        ${readID}.RGsorted
+sh pipe/gatk-HaplotypeCaller.sh        ${readID}.RGsorted.dedupped
 
 echo ${readID} done!
 
